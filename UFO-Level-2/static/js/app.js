@@ -32,16 +32,49 @@ function DateFilter() {
   d3.event.preventDefault();
 
   // Select the input element and get the raw HTML node
-  var inputElement = d3.select("#datetime")
+  var DateElement = d3.select("#datetime")
+  var cityElement = d3.select("#city")
+  var stateElement = d3.select("#state")
+  var countryElement = d3.select("#country")
+  var shapeElement = d3.select("#shape")
 
   // Get the value property of the input element
-  var inputValue = inputElement.property("value");
+  var DateInputValue = DateElement.property("value");
+  var cityinputValue = cityElement.property("value");
+  var stateinputValue = stateElement.property("value");
+  var countryinputValue = countryElement.property("value");
+  var shapeinputValue = shapeElement.property("value");
 
-  console.log(inputValue);
+  var filteredData = '';
+
+
+  console.log(DateInputValue);
+  console.log(cityinputValue);
+  console.log(stateinputValue);
+  console.log(countryinputValue);
+  console.log(shapeinputValue);
   console.log(tableData);
 
   // Filter the table data with the input date value
-  var filteredData = tableData.filter(ufo => ufo.datetime === inputValue);
+  if (DateInputValue.length > 0){ 
+     filteredData = tableData.filter(ufo => ufo.datetime === DateInputValue);
+    }
+    if (cityinputValue.length > 0){ 
+     filteredData = tableData.filter(ufo => ufo.city === cityinputValue)
+     }
+    if (stateinputValue.length > 0){ 
+      filteredData = tableData.filter(ufo => ufo.state === stateinputValue)
+      }
+    if (countryinputValue.length > 0){ 
+        filteredData = tableData.filter(ufo => ufo.country === countryinputValue)
+        }
+    if (shapeinputValue.length > 0){ 
+          filteredData = tableData.filter(ufo => ufo.shape === shapeinputValue)
+          }
+  // var filteredData = filteredData.filter(ufo => ufo.city === cityinputValue);
+  // var filteredData = filteredData.filter(ufo => ufo.state === stateinputValue);
+  // var filteredData = filteredData.filter(ufo => ufo.country === countryinputValue);
+  // var filteredData = filteredData.filter(ufo => ufo.shape === shapeinputValue);
 
   console.log(filteredData);
 
@@ -56,5 +89,4 @@ function DateFilter() {
       cell.text(value);
     });
   });
-
-}
+}// End of Date filter
